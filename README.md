@@ -1,69 +1,41 @@
-# React + TypeScript + Vite
+# Котеке - Интерактивная страница с котиками
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Интерактивная веб-страница, демонстрирующая различные React-компоненты и эффекты с котиками.
 
-Currently, two official plugins are available:
+## Особенности проекта
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 🎨 Визуальные эффекты
+- **ASCII текст**: Текст "Cat" с волновым эффектом и градиентной заливкой
+- **Flying Cat**: Котик летает по экрану как DVD логотип, отскакивая от краев
+- **Silk эффект**: Красивый фоновый узор с параметрическими шумами
+- **Кастомный курсор**: Анимированный целевой курсор вместо стандартного
 
-## Expanding the ESLint configuration
+### 🐱 Функциональность
+- **Загрузка котиков**: Кнопка "фетчнуть" загружает случайные GIF-анимации котиков с cataas.com
+- **Адаптивный дизайн**: Страница корректно отображается на разных устройствах
+- **TypeScript**: Полная типизация для надежного кода
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 🛠 Технологии
+- **React 18** с хуками
+- **TypeScript** для строгой типизации
+- **Vite** для быстрой сборки и разработки
+- **Tailwind CSS** для стилизации
+- **Three.js** для 3D эффектов ASCII текста
+- **CATAAS API** для получения котиков
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Запуск проекта
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+```bash
+# Установка зависимостей
+bun install
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Запуск разработки
+bun run dev
+
+# Сборка для продакшена
+bun run build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Автор
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- GitHub: [xdearboy](https://github.com/xdearboy)
