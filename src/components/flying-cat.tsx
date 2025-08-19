@@ -4,17 +4,20 @@ interface FlyingCatProps {
   imageUrl: string;
   size?: number;
   speed?: number;
+  delay?: number;
 }
 
-export default function FlyingCat({ 
-  imageUrl, 
-  size = 60, 
-  speed = 2 
+export default function FlyingCat({
+  imageUrl,
+  size = 60,
+  speed = 2,
+  delay = 0
 }: FlyingCatProps) {
   const [position, setPosition] = useState({ x: 100, y: 100 });
   const [direction, setDirection] = useState({ x: 1, y: 1 });
   const containerRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<number>(0);
+  const timeoutRef = useRef<number>(0);
 
   useEffect(() => {
     const updatePosition = () => {
@@ -24,6 +27,7 @@ export default function FlyingCat({
         let newDirectionX = direction.x;
         let newDirectionY = direction.y;
 
+        // Проверка столкновений с краями экрана
         if (containerRef.current) {
           const containerWidth = containerRef.current.clientWidth;
           const containerHeight = containerRef.current.clientHeight;
@@ -44,6 +48,13 @@ export default function FlyingCat({
       });
 
       animationRef.current = requestAnimationFrame(updatePosition);
+
+      // Ожидание перед следующим кадром
+      if (delay > 0) {
+        timeoutRef.current = window.setTimeout(() => {
+          timeoutRef.current = 0;
+        }, delay);
+      }
     };
 
     animationRef.current = requestAnimationFrame(updatePosition);
@@ -52,8 +63,12 @@ export default function FlyingCat({
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
+
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
     };
-  }, [direction, speed, size]);
+  }, [direction, delay, speed, size]);
 
   return (
     <div 
